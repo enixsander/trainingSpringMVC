@@ -9,8 +9,8 @@
         <module name="SiteDecember" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="SiteDecember" target="1.8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="SiteDecember" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

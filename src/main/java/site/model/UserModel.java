@@ -1,17 +1,34 @@
 package site.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+//@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//@JoinColumn(name = "client_id", nullable = false)
+
+@Entity
+@Table(name = "user")
 public class UserModel {
+
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name= "increment", strategy= "increment")
+    @Column(name = "_id", length = 6, nullable = false)
+    private long _id;
+
+    @Column(name = "name")
     private String name;
-    private int _id;
-    private int age;
+    @Column(name = "country")
+    private String country;
 
     public UserModel() {
     }
 
-    public UserModel(String name, int _id, int age) {
+    public UserModel(String name, long _id, String country) {
         this.name = name;
         this._id = _id;
-        this.age = age;
+        this.country = country;
     }
 
     public String getName() {
@@ -22,19 +39,19 @@ public class UserModel {
         this.name = name;
     }
 
-    public int get_id() {
+    public long get_id() {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void set_id(long _id) {
         this._id = _id;
     }
 
-    public int getAge() {
-        return age;
+    public String getCountry() {
+        return country;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
