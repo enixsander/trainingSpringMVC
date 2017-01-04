@@ -8,8 +8,8 @@ import javax.persistence.*;
 //@JoinColumn(name = "client_id", nullable = false)
 
 @Entity
-@Table(name = "user")
-public class UserModel {
+@Table(name = "User")
+public class User{
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -22,10 +22,10 @@ public class UserModel {
     @Column(name = "country")
     private String country;
 
-    public UserModel() {
+    public User() {
     }
 
-    public UserModel(String name, long _id, String country) {
+    public User(String name, long _id, String country) {
         this.name = name;
         this._id = _id;
         this.country = country;
