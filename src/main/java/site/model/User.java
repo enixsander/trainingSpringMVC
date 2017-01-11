@@ -3,13 +3,14 @@ package site.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 //@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 //@JoinColumn(name = "client_id", nullable = false)
 
 @Entity
 @Table(name = "User")
-public class User{
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -25,9 +26,8 @@ public class User{
     public User() {
     }
 
-    public User(String name, long _id, String country) {
+    public User(String name, String country) {
         this.name = name;
-        this._id = _id;
         this.country = country;
     }
 

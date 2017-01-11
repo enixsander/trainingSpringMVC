@@ -20,8 +20,12 @@ import java.util.Properties;
 @ComponentScan({ "site" })
 @PropertySource(value = {"classpath:hibernate.properties"})
 public class HibernateConfiguration {
+    private final Environment env;
+
     @Autowired
-    private Environment env;
+    public HibernateConfiguration(Environment env) {
+        this.env = env;
+    }
 
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
