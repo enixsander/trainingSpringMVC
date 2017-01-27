@@ -28,6 +28,14 @@ public class UserService {
         }
     }
 
+    public void updateUser(User user) {
+        try {
+            userRepository.update(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void deleteUser(long id) {
         try {
             User user = new User();

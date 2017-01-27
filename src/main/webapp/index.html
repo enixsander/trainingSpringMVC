@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-framework="backbonejs">
+
+  <head>
+    <title>Backbone</title>
+    <link rel="stylesheet" href="lib/index.css">
+  </head>
+
+  <body>
+  <section class="todoapp">
+      <header class="header">
+          <h1>todos</h1>
+          <input class="new-todo" placeholder="Add new username?" autofocus>
+      </header>
+      <section class="main">
+          <ul class="todo-list"></ul>
+      </section>
+      <footer class="footer"></footer>
+  </section>
+  <script type="text/template" id="item-template">
+      <div class="view">
+          <label><%- name %></label>
+          <button class="destroy"></button>
+      </div>
+      <input class="edit" value="<%- name %>">
+  </script>
+  <script type="text/template" id="stats-template">
+      <span class="todo-count"></span>
+  </script>
+
+      <script src="lib/jquery.js"></script>
+      <script src="lib/underscore.js"></script>
+      <script src="lib/backbone.js"></script>
+      <script src="lib/backbone.localStorage.js"></script>
+      <!--script src="lib/json2.js"></script-->
+      <script src="js/model/user.js"></script>
+      <script src="js/collection/users.js"></script>
+      <script src="js/view/user-view.js"></script>
+      <script src="js/view/app-view.js"></script>
+      <script src="js/router/router.js"></script>
+      <script src="js/app.js"></script>
+  </body>
+</html>

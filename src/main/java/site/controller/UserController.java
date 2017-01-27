@@ -43,6 +43,19 @@ public class UserController {
     }
 
     /**
+     * Change data in user http://localhost:8088/user
+     *  { "_id": 13,
+     *    "name": "New_name",
+     *    "country": "New_country" }
+     *    value id not used, it's костыль
+     */
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT, produces = {"application/json"})
+    @ResponseBody
+    public void updateUser(@RequestBody User user) {
+        userService.updateUser(user);
+    }
+
+    /**
      * Delete http://localhost:8088/user/7 (id = 7)
      */
     @RequestMapping(value = "{id}",method = RequestMethod.DELETE, produces = {"application/json"})
@@ -51,9 +64,12 @@ public class UserController {
         userService.deleteUser(id);
     }
 
+    /**
+     * http://localhost:8088/user/greet?name=NewName
+     */
     @RequestMapping("/greet")
     public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
         model.addAttribute("message", name);
-        return "user";
+        return "user.jsp";
     }
 }
