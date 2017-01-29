@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import site.model.User;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -36,8 +38,23 @@ public class UserRepository {
     }
 
     public List getAllUsers() throws SQLException {
-        List users;
-        users =  getSession().createCriteria(User.class).list();
-        return users;
+
+        CriteriaBuilder builder = getSession().getCriteriaBuilder();
+        CriteriaQuery<User> criteria = builder.createQuery(User.class);
+        // Specify criteria root
+        criteria.from(User.class);
+        // Execute query
+        return getSession().createQuery(criteria).getResultList();
     }
+
+    //JDBC
+    /*public void saveUser(User entity) throws SQLException {
+        String sql = "INSERT INTO spring.User (_id, name, country) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, entity.get_id(), entity.getName(), entity.getCountry());
+    }
+
+    public List<User> findAll() throws SQLException{
+        String sql = "SELECT * FROM spring.User";
+        return jdbcOperations.query(sql, new BeanPropertyRowMapper<User>(User.class));
+    }*/
 }
