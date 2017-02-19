@@ -65,7 +65,7 @@ var app = app || {};
         // Generate the attributes for a new Todo item.
         newAttributes: function () {
             return {
-                name: this.$input.val().trim(),
+                firstName: this.$input.val().trim(),
                 order: app.todos.nextOrder()
             };
         },

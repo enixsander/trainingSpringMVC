@@ -1,13 +1,15 @@
 package site.repository;
 
+import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 import site.model.User;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.*;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -42,11 +44,43 @@ public class UserRepository {
         CriteriaBuilder builder = getSession().getCriteriaBuilder();
         CriteriaQuery<User> criteria = builder.createQuery(User.class);
         // Specify criteria root
-        criteria.from(User.class);
+        Root<User> root = criteria.from(User.class);
+        // TODO
+        //root.fetch("marker");//, JoinType.INNER);
+        //criteria.select(root);
         // Execute query
         return getSession().createQuery(criteria).getResultList();
     }
 
+    public User findByUserName(String username) throws SQLException {
+
+        CriteriaBuilder builder = getSession().getCriteriaBuilder();
+        CriteriaQuery<User> criteria = builder.createQuery(User.class);
+        // Specify criteria root
+        Root<User> root = criteria.from(User.class);
+
+        Path<String> namePath = root.get("login");
+        criteria.where(builder.equal(namePath, username));
+        // Execute query
+        User user = getSession().createQuery(criteria).getSingleResult();
+
+        /*if(user!=null)
+            Hibernate.initialize(user.getMarker());*/
+
+        return user;
+    }
+
+    public User findByUserID(long id) throws SQLException {
+
+        CriteriaBuilder builder = getSession().getCriteriaBuilder();
+        CriteriaQuery<User> criteria = builder.createQuery(User.class);
+        // Specify criteria root
+        Root<User> root = criteria.from(User.class);
+
+        criteria.where(builder.equal(root.get("_id"), id));
+
+        return getSession().createQuery(criteria).getSingleResult();
+    }
     //JDBC
     /*public void saveUser(User entity) throws SQLException {
         String sql = "INSERT INTO spring.User (_id, name, country) VALUES (?, ?, ?)";

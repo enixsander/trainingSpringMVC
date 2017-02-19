@@ -53,7 +53,7 @@ function result(object, property) {
 }
 
 // Our Store is represented by a single JS object in *localStorage*. Create it
-// with a meaningful name, like the name you'd give a table.
+// with a meaningful firstName, like the firstName you'd give a table.
 // window.Store is deprectated, use Backbone.LocalStorage instead
 Backbone.LocalStorage = window.Store = function(name, serializer) {
   if( !this.localStorage ) {
@@ -77,7 +77,7 @@ extend(Backbone.LocalStorage.prototype, {
 
   // Save the current state of the **Store** to *localStorage*.
   save: function() {
-    this.localStorage().setItem(this.name, this.records.join(","));
+    this.localStorage().setItem(this.firstName, this.records.join(","));
   },
 
   // Add a model, giving it a (hopefully)-unique GUID, if it doesn't already
@@ -140,10 +140,10 @@ extend(Backbone.LocalStorage.prototype, {
   // Clear localStorage for specific collection.
   _clear: function() {
     var local = this.localStorage(),
-      itemRe = new RegExp("^" + this.name + "-");
+      itemRe = new RegExp("^" + this.firstName + "-");
 
     // Remove id-tracking item (e.g., "foo").
-    local.removeItem(this.name);
+    local.removeItem(this.firstName);
 
     // Match all data items (e.g., "foo-ID") and remove.
     for (var k in local) {
@@ -161,7 +161,7 @@ extend(Backbone.LocalStorage.prototype, {
   },
 
   _itemName: function(id) {
-    return this.name+"-"+id;
+    return this.firstName+"-"+id;
   }
 
 });

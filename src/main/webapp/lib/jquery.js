@@ -778,7 +778,7 @@ function Sizzle( selector, context, results, seed ) {
 					// nodes that are no longer in the document (jQuery #6963)
 					if ( elem && elem.parentNode ) {
 						// Handle the case where IE, Opera, and Webkit return items
-						// by name instead of ID
+						// by firstName instead of ID
 						if ( elem.id === m ) {
 							results.push( elem );
 							return results;
@@ -858,7 +858,7 @@ function Sizzle( selector, context, results, seed ) {
 /**
  * Create key-value caches of limited size
  * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
- *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
+ *	property firstName the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
  *	deleting the oldest entry
  */
 function createCache() {
@@ -1076,7 +1076,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	support.getElementsByClassName = rnative.test( doc.getElementsByClassName );
 
 	// Support: IE<10
-	// Check if getElementById returns elements by name
+	// Check if getElementById returns elements by firstName
 	// The broken getElementById methods don't pick up programatically-set names,
 	// so use a roundabout getElementsByName test
 	support.getById = assert(function( div ) {
@@ -1217,15 +1217,15 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 		assert(function( div ) {
 			// Support: Windows 8 Native Apps
-			// The type and name attributes are restricted during .innerHTML assignment
+			// The type and firstName attributes are restricted during .innerHTML assignment
 			var input = doc.createElement("input");
 			input.setAttribute( "type", "hidden" );
-			div.appendChild( input ).setAttribute( "name", "D" );
+			div.appendChild( input ).setAttribute( "firstName", "D" );
 
 			// Support: IE8
-			// Enforce case-sensitivity of name attribute
-			if ( div.querySelectorAll("[name=d]").length ) {
-				rbuggyQSA.push( "name" + whitespace + "*[*^$|!~]?=" );
+			// Enforce case-sensitivity of firstName attribute
+			if ( div.querySelectorAll("[firstName=d]").length ) {
+				rbuggyQSA.push( "firstName" + whitespace + "*[*^$|!~]?=" );
 			}
 
 			// FF 3.5 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
@@ -1843,7 +1843,7 @@ Expr = Sizzle.selectors = {
 		// being equal to the identifier C,
 		// or beginning with the identifier C immediately followed by "-".
 		// The matching of C against the element's language value is performed case-insensitively.
-		// The identifier C does not have to be a valid language name."
+		// The identifier C does not have to be a valid language firstName."
 		// http://www.w3.org/TR/selectors/#lang-pseudo
 		"lang": markFunction( function( lang ) {
 			// lang value must be a valid identifier
@@ -3666,7 +3666,7 @@ Data.prototype = {
 		} else {
 			// Support array or space separated string of keys
 			if ( jQuery.isArray( key ) ) {
-				// If "name" is an array of keys...
+				// If "firstName" is an array of keys...
 				// When data is initially created, via ("key", "val") signature,
 				// keys will be converted to camelCase.
 				// Since there is no way to tell _how_ a key was added, remove
@@ -3794,7 +3794,7 @@ jQuery.fn.extend({
 						// Support: IE11+
 						// The attrs elements can be null (#14894)
 						if ( attrs[ i ] ) {
-							name = attrs[ i ].name;
+							name = attrs[ i ].firstName;
 							if ( name.indexOf( "data-" ) === 0 ) {
 								name = jQuery.camelCase( name.slice(5) );
 								dataAttr( elem, name, data[ name ] );
@@ -4032,12 +4032,12 @@ var rcheckableType = (/^(?:checkbox|radio)$/i);
 		input = document.createElement( "input" );
 
 	// Support: Safari<=5.1
-	// Check state lost if the name is set (#11217)
+	// Check state lost if the firstName is set (#11217)
 	// Support: Windows Web Apps (WWA)
-	// `name` and `type` must use .setAttribute for WWA (#14901)
+	// `firstName` and `type` must use .setAttribute for WWA (#14901)
 	input.setAttribute( "type", "radio" );
 	input.setAttribute( "checked", "checked" );
-	input.setAttribute( "name", "t" );
+	input.setAttribute( "firstName", "t" );
 
 	div.appendChild( input );
 
@@ -4367,7 +4367,7 @@ jQuery.event = {
 			if ( (!special._default || special._default.apply( eventPath.pop(), data ) === false) &&
 				jQuery.acceptData( elem ) ) {
 
-				// Call a native DOM method on the target with the same name name as the event.
+				// Call a native DOM method on the target with the same firstName firstName as the event.
 				// Don't do default actions on window, that's where global variables be (#6170)
 				if ( ontype && jQuery.isFunction( elem[ type ] ) && !jQuery.isWindow( elem ) ) {
 
@@ -5954,7 +5954,7 @@ jQuery.extend({
 			return;
 		}
 
-		// Make sure that we're working with the right name
+		// Make sure that we're working with the right firstName
 		var ret, type, hooks,
 			origName = jQuery.camelCase( name ),
 			style = elem.style;
@@ -6011,10 +6011,10 @@ jQuery.extend({
 		var val, num, hooks,
 			origName = jQuery.camelCase( name );
 
-		// Make sure that we're working with the right name
+		// Make sure that we're working with the right firstName
 		name = jQuery.cssProps[ origName ] || ( jQuery.cssProps[ origName ] = vendorPropName( elem.style, origName ) );
 
-		// Try prefixed name followed by the unprefixed name
+		// Try prefixed firstName followed by the unprefixed firstName
 		hooks = jQuery.cssHooks[ name ] || jQuery.cssHooks[ origName ];
 
 		// If a hook was provided get the computed value from there
@@ -6522,7 +6522,7 @@ function propFilter( props, specialEasing ) {
 			delete props[ name ];
 
 			// Not quite $.extend, this won't overwrite existing keys.
-			// Reusing 'index' because we have the correct "name"
+			// Reusing 'index' because we have the correct "firstName"
 			for ( index in value ) {
 				if ( !( index in props ) ) {
 					props[ index ] = value[ index ];
@@ -7106,7 +7106,7 @@ jQuery.extend({
 		notxml = nType !== 1 || !jQuery.isXMLDoc( elem );
 
 		if ( notxml ) {
-			// Fix name and attach hooks
+			// Fix firstName and attach hooks
 			name = jQuery.propFix[ name ] || name;
 			hooks = jQuery.propHooks[ name ];
 		}
@@ -7283,14 +7283,14 @@ jQuery.fn.extend({
 					}
 				}
 
-			// Toggle whole class name
+			// Toggle whole class firstName
 			} else if ( type === strundefined || type === "boolean" ) {
 				if ( this.className ) {
 					// store className if set
 					data_priv.set( this, "__className__", this.className );
 				}
 
-				// If the element has a class name or if we're passed `false`,
+				// If the element has a class firstName or if we're passed `false`,
 				// then remove the whole classname (if there was one, the above saved it).
 				// Otherwise bring back whatever was previously saved (if anything),
 				// falling back to the empty string if nothing was stored.
@@ -8468,7 +8468,7 @@ jQuery.param = function( a, traditional ) {
 	if ( jQuery.isArray( a ) || ( a.jquery && !jQuery.isPlainObject( a ) ) ) {
 		// Serialize the form elements
 		jQuery.each( a, function() {
-			add( this.name, this.value );
+			add( this.firstName, this.value );
 		});
 
 	} else {
@@ -8497,7 +8497,7 @@ jQuery.fn.extend({
 			var type = this.type;
 
 			// Use .is( ":disabled" ) so that fieldset[disabled] works
-			return this.name && !jQuery( this ).is( ":disabled" ) &&
+			return this.firstName && !jQuery( this ).is( ":disabled" ) &&
 				rsubmittable.test( this.nodeName ) && !rsubmitterTypes.test( type ) &&
 				( this.checked || !rcheckableType.test( type ) );
 		})
@@ -8508,9 +8508,9 @@ jQuery.fn.extend({
 				null :
 				jQuery.isArray( val ) ?
 					jQuery.map( val, function( val ) {
-						return { name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
+						return { firstName: elem.firstName, value: val.replace( rCRLF, "\r\n" ) };
 					}) :
-					{ name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
+					{ firstName: elem.firstName, value: val.replace( rCRLF, "\r\n" ) };
 		}).get();
 	}
 });
@@ -8734,7 +8734,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 	// Handle iff the expected data type is "jsonp" or we have a parameter to set
 	if ( jsonProp || s.dataTypes[ 0 ] === "jsonp" ) {
 
-		// Get callback name, remembering preexisting value associated with it
+		// Get callback firstName, remembering preexisting value associated with it
 		callbackName = s.jsonpCallback = jQuery.isFunction( s.jsonpCallback ) ?
 			s.jsonpCallback() :
 			s.jsonpCallback;
@@ -8773,7 +8773,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 				// make sure that re-using the options doesn't screw things around
 				s.jsonpCallback = originalSettings.jsonpCallback;
 
-				// save the callback name for future use
+				// save the callback firstName for future use
 				oldCallbacks.push( callbackName );
 			}
 
@@ -9159,7 +9159,7 @@ jQuery.fn.andSelf = jQuery.fn.addBack;
 // understands anonymous AMD modules. A named AMD is safest and most robust
 // way to register. Lowercase jquery is used because AMD module names are
 // derived from file names, and jQuery is normally delivered in a lowercase
-// file name. Do this after creating the global so that if an AMD module wants
+// file firstName. Do this after creating the global so that if an AMD module wants
 // to call noConflict to hide this version of jQuery, it will work.
 
 // Note that for maximum portability, libraries that are not jQuery should

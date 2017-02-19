@@ -214,7 +214,7 @@
 
   // Remove one or many callbacks. If `context` is null, removes all
   // callbacks with that function. If `callback` is null, removes all
-  // callbacks for the event. If `name` is null, removes all bound
+  // callbacks for the event. If `firstName` is null, removes all bound
   // callbacks for all events.
   Events.off =  function(name, callback, context) {
     if (!this._events) return this;
@@ -333,9 +333,9 @@
   };
 
   // Trigger one or many events, firing all bound callbacks. Callbacks are
-  // passed the same arguments as `trigger` is, apart from the event name
+  // passed the same arguments as `trigger` is, apart from the event firstName
   // (unless you're listening on `"all"`, which will cause your callback to
-  // receive the true name of the event as the first argument).
+  // receive the true firstName of the event as the first argument).
   Events.trigger =  function(name) {
     if (!this._events) return this;
 
@@ -413,12 +413,12 @@
     // The value returned during the last failed validation.
     validationError: null,
 
-    // The default name for the JSON `id` attribute is `"id"`. MongoDB and
+    // The default firstName for the JSON `id` attribute is `"id"`. MongoDB and
     // CouchDB users may want to set this to `"_id"`.
     idAttribute: 'id',
 
     // The prefix is used to create the client id which is used to identify models locally.
-    // You may want to override this if you're experiencing name clashes with model ids.
+    // You may want to override this if you're experiencing firstName clashes with model ids.
     cidPrefix: 'c',
 
     // Initialize is an empty function by default. Override it with your own
@@ -545,7 +545,7 @@
     },
 
     // Determine if the model has changed since the last `"change"` event.
-    // If you specify an attribute name, determine if that attribute has changed.
+    // If you specify an attribute firstName, determine if that attribute has changed.
     hasChanged: function(attr) {
       if (attr == null) return !_.isEmpty(this.changed);
       return _.has(this.changed, attr);
@@ -1259,7 +1259,7 @@
     // *{"event selector": "callback"}*
     //
     //     {
-    //       'mousedown .name':  'edit',
+    //       'mousedown .firstName':  'edit',
     //       'click .button':     'save',
     //       'click .open':       function(e) { ... }
     //     }

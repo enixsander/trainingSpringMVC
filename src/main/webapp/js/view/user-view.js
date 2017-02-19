@@ -74,7 +74,7 @@ var app = app || {};
 
             if (trimmedValue) {
                 //this.model.fetch();
-                this.model.save({ name: trimmedValue });
+                this.model.save({ firstName: trimmedValue });
             } else {
                 this.clear();
             }
@@ -95,7 +95,7 @@ var app = app || {};
             if (e.which === ESC_KEY) {
                 this.$el.removeClass('editing');
                 // Also reset the hidden input back to the original value.
-                this.$input.val(this.model.get('name'));
+                this.$input.val(this.model.get('firstName'));
             }
         },
 

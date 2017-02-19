@@ -14,11 +14,14 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
+    //Content-Type: application/json
     private final UserService userService;
+    //private final MarkerService markerService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService/*, MarkerService markerService*/) {
         this.userService = userService;
+      //  this.markerService = markerService;
     }
 
     /**
@@ -33,8 +36,8 @@ public class UserController {
 
     /**
      * Add new user http://localhost:8088/user
-     *  { "name": "New_name",
-     *    "country": "New_country" }
+     *  { "firstName": "New_name",
+     *    "lastName": "New_country" }
      */
     @RequestMapping(method = RequestMethod.POST, produces = {"application/json"})
     @ResponseBody
@@ -45,8 +48,8 @@ public class UserController {
     /**
      * Change data in user http://localhost:8088/user
      *  { "_id": 13,
-     *    "name": "New_name",
-     *    "country": "New_country" }
+     *    "firstName": "New_name",
+     *    "lastName": "New_country" }
      *    value id not used, it's костыль
      */
     @RequestMapping(value = "{id}", method = RequestMethod.PUT, produces = {"application/json"})

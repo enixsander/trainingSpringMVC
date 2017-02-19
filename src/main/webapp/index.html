@@ -17,12 +17,15 @@
       </section>
       <footer class="footer"></footer>
   </section>
+
+  <a href="/logout">Logout</a>
+
   <script type="text/template" id="item-template">
       <div class="view">
-          <label><%- name %></label>
+          <label><%- firstName %></label>
           <button class="destroy"></button>
       </div>
-      <input class="edit" value="<%- name %>">
+      <input class="edit" value="<%- firstName %>">
   </script>
   <script type="text/template" id="stats-template">
       <span class="todo-count"></span>
