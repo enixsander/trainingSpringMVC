@@ -50,10 +50,10 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email) {
+    public User(String firstName, String lastName, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.password = password;
     }
 
     // TODO HTTP Status 500, if fetch = LAZY

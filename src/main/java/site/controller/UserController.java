@@ -16,12 +16,10 @@ public class UserController {
 
     //Content-Type: application/json
     private final UserService userService;
-    //private final MarkerService markerService;
 
     @Autowired
-    public UserController(UserService userService/*, MarkerService markerService*/) {
+    public UserController(UserService userService) {
         this.userService = userService;
-      //  this.markerService = markerService;
     }
 
     /**

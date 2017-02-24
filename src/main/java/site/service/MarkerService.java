@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional
 public class MarkerService {
     private final MarkerRepository markerRepository;
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public MarkerService(MarkerRepository markerRepository, UserService userService) {
@@ -24,7 +24,7 @@ public class MarkerService {
 
     public void saveMarker(Marker marker) {
         try {
-            // TODO может заменить merge
+            // TODO может заменить merge?!
             marker.setUser(userService.getCurrentUser());
             markerRepository.persist(marker);
         } catch (SQLException e) {
